@@ -22,7 +22,7 @@ int main() {
 
         BeginDrawing();
             ClearBackground(BLACK);
-            DrawText(TextFormat("Suck my dick %.1f", x), 20, 20, 18, LIGHTGRAY);
+            DrawText(TextFormat("Physics Simulation here we goo baby %.1f", x), 20, 20, 18, LIGHTGRAY);
             DrawCircleV(ballPos, 15.0f, MAROON);
             DrawFPS(screenWidth - 90, 20);
         EndDrawing();
