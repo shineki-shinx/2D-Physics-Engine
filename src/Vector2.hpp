@@ -1,5 +1,5 @@
-#ifndef VECTOR2_HPP
-#endif VECTOR2_HPP
+#pragma once
+
 struct Vec2{
     float x,y;
 

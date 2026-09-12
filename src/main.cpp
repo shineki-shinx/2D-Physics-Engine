@@ -9,22 +9,38 @@ int main() {
     
     InitWindow(screenWidth, screenHeight, "Custom Engine here we go");
     SetTargetFPS(60);
-    Vec2 V1(5,6);
-    Vec2 V2(3,4);
-    float x;
-    // Placeholder particle position
-    Vector2 ballPos = { 400.0f, 300.0f };
-    if(V1 != V2){
-         x = 0;
-    }else  x = 5.0;
+    // Defining Physical States
+    Vec2 Velocity(0.0f,0); //initial toss
+    Vec2 Acceleration (0, 980.0f); // 98px/s^2
+    Vec2 Position(screenWidth/2,screenHeight/2); //initial position
+    const float radius = 15.0f;
+    const float CoeffOfElasciticity = 0.75f;
+
+    
     while (!WindowShouldClose()) {
         // Physics update would go here (Euler / Verlet)
+        float DeltaTime = GetFrameTime(); // Getting the time between frames
+        
+        // Euler's Integration
+        Velocity = Velocity + (Acceleration * DeltaTime);
+        Position = Position + (Velocity * DeltaTime);
+        
+        //Floor Collision 
+        if ( Position.y + radius >= screenHeight){
+            Position.y = screenHeight- radius;
+            Velocity.y = -1*Velocity.y*CoeffOfElasciticity;
+        }
 
         BeginDrawing();
             ClearBackground(BLACK);
-            DrawText(TextFormat("Physics Simulation here we goo baby %.1f", x), 20, 20, 18, LIGHTGRAY);
-            DrawCircleV(ballPos, 15.0f, MAROON);
+            //Draw baseline
+            DrawLine(0, screenHeight-1, screenWidth, screenHeight-1, RED);
+            DrawCircleV(Vector2{Position.x, Position.y }, radius, GREEN);
             DrawFPS(screenWidth - 90, 20);
+
+            //Drawing Information
+            DrawText(TextFormat("Position : (%.1f, %.1f)", Position.x, Position.y), 20, 20 , 18, RAYWHITE);
+            DrawText(TextFormat("Velocity : (%.1f, %.1f)", Velocity.x, Velocity.y), 20, 60 , 18, RAYWHITE);
         EndDrawing();
     }
 

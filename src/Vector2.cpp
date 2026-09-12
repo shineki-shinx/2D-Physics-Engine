@@ -18,6 +18,10 @@ Vec2 Vec2::operator + (const Vec2& v) const{    return Vec2((x+v.x), (y+v.y)); /
 Vec2 Vec2::operator - (const Vec2& v) const{    return Vec2(x - v.x, y - v.y);  }
 Vec2 Vec2::operator * (const float n) const{    return Vec2(x*n, y*n);      }
 Vec2 Vec2::operator / (const float n) const{    return Vec2(x/n,y/n);           }
-Vec2 Vec2::operator = (const Vec2& v) {         return Vec2(v.x,v.y);            }
+Vec2 Vec2::operator = (const Vec2& v) {         
+    x = v.x;
+    y = v.y;
+    return *this;
+}
 bool Vec2::operator == (const Vec2& v){ return x == v.x && y == v.y;}
 bool Vec2::operator != (const Vec2& v) {return !(*this == v);}
