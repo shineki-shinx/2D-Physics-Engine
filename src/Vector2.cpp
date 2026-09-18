@@ -9,10 +9,10 @@ Vec2::Vec2(float x, float y){
 }
 
 float Vec2::Magnitude() const {
-    return sqrt(x*x + y*y);
+    return sqrt(x*x + y*y);// Calculating the magnitude
 }
 float Vec2::MaginitudeSquared() const {
-    return (x*x + y*y);
+    return (x*x + y*y);// Calculating squareroot of magnitude as sqrt is a heavy process
 }
 Vec2 Vec2::operator + (const Vec2& v) const{    return Vec2((x+v.x), (y+v.y)); /* used parametarized constructor to avoid null initialization*/ }
 Vec2 Vec2::operator - (const Vec2& v) const{    return Vec2(x - v.x, y - v.y);  }
@@ -25,3 +25,8 @@ Vec2 Vec2::operator = (const Vec2& v) {
 }
 bool Vec2::operator == (const Vec2& v){ return x == v.x && y == v.y;}
 bool Vec2::operator != (const Vec2& v) {return !(*this == v);}
+Vec2 Vec2::operator +=(const Vec2& v){
+    x += v.x;
+    y += v.y;
+    return *this;
+}
